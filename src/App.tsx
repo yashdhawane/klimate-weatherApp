@@ -9,8 +9,19 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import { Toaster } from "./components/ui/sonner";
+
 function App() {
-  const queryClient = new QueryClient()
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: 5 * 60 * 1000, // 5 minutes
+        gcTime: 10 * 60 * 1000, // 10 minutes
+        retry: false,
+        refetchOnWindowFocus: false,
+      },
+    },
+  });
 
   return (
     <> 
@@ -23,6 +34,7 @@ function App() {
             <Route path="/city/:cityName" element={<CityPage/>}></Route>
           </Routes>
         </Layout>
+        <Toaster richColors />
        </ThemeProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />

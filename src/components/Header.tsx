@@ -1,6 +1,7 @@
 import { useTheme } from "@/context/theme-provider"
 import { Link } from "react-router-dom"
 import { Moon, Sun } from "lucide-react";
+import { CitySearch } from "./city-search";
 
 function Header() {
     const {theme,setTheme}=useTheme();
@@ -12,6 +13,7 @@ function Header() {
         <img src={isDark  ? "/logo.png" : "/logo2 (1).png"} alt="logo" className="h-14"></img>
     </Link>
     <div className="flex gap-4">
+    <CitySearch />
          <div onClick={()=>{
             setTheme(isDark?"light":"dark")
             
